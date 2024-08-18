@@ -1,0 +1,42 @@
+﻿@model Francisco_Moreira.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white shadow-md rounded-lg px-8 py-6 w-full max-w-md">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Iniciar sesión</h2>
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "space-y-4" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                @Html.LabelFor(m => m.Email, new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500", placeholder = "Correo electrónico" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-sm text-red-600 mt-1" })
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.Password, new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.PasswordFor(m => m.Password, new { @class = "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500", placeholder = "Contraseña" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-sm text-red-600 mt-1" })
+            </div>
+
+            <div class="flex items-center">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "h-4 w-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500" })
+                @Html.LabelFor(m => m.RememberMe, new { @class = "ml-2 block text-sm text-gray-800" })
+            </div>
+
+            <div>
+                <button type="submit" class="w-full bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">Iniciar sesión</button>
+            </div>
+        }
+
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-600">¿No tienes una cuenta?</p>
+            @Html.ActionLink("Registrarse", "Register", "Account", null, new { @class = "mt-2 inline-block text-gray-800 hover:text-gray-600" })
+        </div>
+    </div>
+</div>

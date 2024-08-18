@@ -1,0 +1,61 @@
+﻿@model Francisco_Moreira.Models.Tarea
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="min-h-screen bg-gray-100 py-8">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Editar Tarea</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="bg-white shadow-md rounded-lg px-8 py-6">
+                @Html.ValidationSummary(true, "", new { @class = "text-red-600 mb-4" })
+                @Html.HiddenFor(model => model.ID)
+
+                <div class="mb-4">
+                    @Html.LabelFor(model => model.Titulo, new { @class = "block text-sm font-medium text-gray-700" })
+                    @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500" } })
+                    @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-sm text-red-600 mt-1" })
+                </div>
+
+                <div class="mb-4">
+                    @Html.LabelFor(model => model.Descripcion, new { @class = "block text-sm font-medium text-gray-700" })
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-sm text-red-600 mt-1" })
+                </div>
+
+                <div class="mb-4">
+                    @Html.LabelFor(model => model.FechaCreacion, new { @class = "block text-sm font-medium text-gray-700" })
+                    @Html.TextBoxFor(model => model.FechaCreacion, "{0:yyyy-MM-dd}", new { @class = "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500", type = "date" })
+                    @Html.ValidationMessageFor(model => model.FechaCreacion, "", new { @class = "text-sm text-red-600 mt-1" })
+                </div>
+
+                <div class="mb-4">
+                    @Html.LabelFor(model => model.FechaVencimiento, new { @class = "block text-sm font-medium text-gray-700" })
+                    @Html.TextBoxFor(model => model.FechaVencimiento, "{0:yyyy-MM-dd}", new { @class = "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500", type = "date" })
+                    @Html.ValidationMessageFor(model => model.FechaVencimiento, "", new { @class = "text-sm text-red-600 mt-1" })
+                </div>
+
+                <div class="mb-4">
+                    @Html.LabelFor(model => model.Completada, new { @class = "block text-sm font-medium text-gray-700" })
+                    <div class="flex items-center">
+                        @Html.EditorFor(model => model.Completada, new { htmlAttributes = new { @class = "h-4 w-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500" } })
+                        @Html.ValidationMessageFor(model => model.Completada, "", new { @class = "text-sm text-red-600 mt-1 ml-2" })
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <input type="submit" value="Guardar" class="bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" />
+                </div>
+            </div>
+        }
+
+        <div class="mt-4">
+            @Html.ActionLink("Volver a la Lista", "Index", null, new { @class = "text-gray-800 hover:text-gray-600" })
+        </div>
+    </div>
+</div>
